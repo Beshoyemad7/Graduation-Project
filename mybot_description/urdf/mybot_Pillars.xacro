@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<robot name="mybot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Add Pillars to Connect Layers -->
+  <xacro:macro name="pillar" params="name x y">
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <cylinder length="${pillar_height}" radius="${pillar_radius}"/>
+        </geometry>
+        <origin xyz="0 0 ${pillar_height/2}" rpy="0 0 0"/>
+        <material name="black"><color rgba="0 0 0 1"/></material>
+      </visual>
+    </link>
+
+    <gazebo reference="${name}">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <joint name="${name}_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="${name}"/>
+      <origin xyz="${x} ${y} 0" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Adjusted pillar positions: moved inward by 2cm -->
+  <xacro:pillar name="pillar_fl" x="0.1325025" y="0.115"/>
+  <xacro:pillar name="pillar_fr" x="0.1325025" y="-0.115"/>
+  <xacro:pillar name="pillar_rl" x="-0.1325025" y="0.115"/>
+  <xacro:pillar name="pillar_rr" x="-0.1325025" y="-0.115"/>
+
+
+  <!-- Pillars from Layer 4 to Layer 5 -->
+  <xacro:macro name="pillar4to5" params="name x y height">
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <cylinder length="${height}" radius="${pillar_radius}"/>
+        </geometry>
+        <origin xyz="0 0 ${height/2}" rpy="0 0 0"/>
+        <material name="black"><color rgba="0 0 0 1"/></material>
+      </visual>
+    </link>
+
+    <gazebo reference="${name}">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <joint name="${name}_joint" type="fixed">
+      <parent link="layer_4"/>
+      <child link="${name}"/>
+      <origin xyz="${x} ${y} 0" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Add new pillars on layer 5 edges -->
+  <xacro:pillar4to5 name="pillar4to5_fl" x="0.06"  y="0.06"  height="0.15"/>
+  <xacro:pillar4to5 name="pillar4to5_fr" x="0.06"  y="-0.06" height="0.15"/>
+  <xacro:pillar4to5 name="pillar4to5_rl" x="-0.06" y="0.06"  height="0.15"/>
+  <xacro:pillar4to5 name="pillar4to5_rr" x="-0.06" y="-0.06" height="0.15"/>
+
+</robot>

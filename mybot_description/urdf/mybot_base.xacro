@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot name="mybot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Properties -->
+  <xacro:property name="layer_radius" value="0.20"/>
+  <xacro:property name="layer_thickness" value="0.005"/>
+  <xacro:property name="wheel_radius" value="0.0325"/>
+  <xacro:property name="wheel_width" value="0.026"/>
+  <xacro:property name="wheel_distance" value="0.305"/>
+  <xacro:property name="lidar_height" value="0.83"/>
+  <xacro:property name="imu_height" value="0.4025"/>
+  <xacro:property name="caster_radius" value="0.0325"/>
+  <xacro:property name="caster_distance" value="0.1525025"/>
+  <xacro:property name="pillar_radius" value="0.005"/>
+  <xacro:property name="pillar_height" value="0.65"/>
+
+  <!-- Base footprint -->
+  <link name="base_footprint"/>
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.005" rpy="0 0 0"/>
+  </joint>
+
+<!-- Base Link (Layer 1) -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="${layer_thickness}" radius="${layer_radius}"/>
+      </geometry>
+      <origin xyz="0 0 -0.0025" rpy="0 0 0"/>
+      <material name="grey"><color rgba="0.5 0.5 0.5 1"/></material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${layer_thickness}" radius="${layer_radius}"/>
+      </geometry>
+    </collision>
+	<xacro:inertial_cylinder mass="2.0" length="${layer_thickness}" radius="${layer_radius}">
+		<origin xyz="0 0 -0.0025" rpy="0 0 0"/>
+	</xacro:inertial_cylinder>
+  </link>
+
+    <!-- Macro for Other Layers -->
+  <xacro:macro name="layer" params="index height radius">
+    <link name="layer_${index}">
+      <visual>
+        <geometry>
+          <cylinder length="${layer_thickness}" radius="${radius}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="blue"><color rgba="0 0 1 1"/></material>
+      </visual>
+    </link>
+
+      <!-- Gazebo-specific visual appearance -->
+  <gazebo reference="layer_${index}">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  
+    <joint name="layer_${index}_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="layer_${index}"/>
+      <origin xyz="0 0 ${height}" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Add Layers 2 to 5 -->
+  <xacro:layer index="2" height="0.20" radius="${layer_radius}"/>
+  <xacro:layer index="3" height="0.40" radius="${layer_radius}"/>
+  <xacro:layer index="4" height="0.65" radius="${layer_radius}"/>
+  <xacro:layer index="5" height="0.80" radius="0.10"/>
+
+</robot>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot name="mybot" >
+
+<!-- ++++++++++++++++++++++++++++++++ material +++++++++++++++++++++++++++++++ -->
+<material name="Gray">
+    <color rgba="0.5 0.5 0.5 1"/>
+</material>
+
+<material name="Red">
+    <color rgba="1.0 0.0 0.0 1.0"/>
+</material>
+
+<material name="Green">
+    <color rgba="0.0 1.0 0.0 1.0"/>
+</material>
+
+<material name="Blue">
+    <color rgba="0.0 0.0 1.0 1.0"/>
+</material>
+
+<material name="Yellow">
+    <color rgba="1.0 1.0 0.0 1.0"/>
+</material>
+
+<material name="White">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+</material>
+
+<material name="Black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+</material>
+
+</robot>

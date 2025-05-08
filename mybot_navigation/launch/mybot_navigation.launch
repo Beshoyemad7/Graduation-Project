@@ -1,6 +1,7 @@
+<?xml version="1.0"?>
 <launch>
 
-  <arg name="map_file" default="$(find mybot_navigation)/maps/mybot_map.yaml"/>
+  <arg name="map_file" default="$(find mybot_navigation)/maps/of_map.yaml"/>
   <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"/>
 
   <include file="$(find mybot_navigation)/launch/amcl.launch"/> 

@@ -52,7 +52,13 @@ volatile long RM_encoderPos = 0, RM_last_pos = 0, RM_lastpos = 0;
 PID LMPID(&LM_input, &LM_output, &LM_setpoint, LM_kp, LM_ki, LM_kd, DIRECT);
 PID RMPID(&RM_input, &RM_output, &RM_setpoint, RM_kp, RM_ki, RM_kd, DIRECT);
 
+
+MPU6050 mpu;
 void setup() {
+
+  Wire.begin();
+  mpu.initialize();
+
   pinMode(ENCLA, INPUT_PULLUP);
   pinMode(ENCLB, INPUT_PULLUP);
   pinMode(ENCRA, INPUT_PULLUP);

@@ -31,5 +31,8 @@
         	/mobile_robot/joints_update
             /mobile_robot/mobile_base_controller" >
   </node>
+    
+    <!-- Launch RPLidar -->
+  <include file="$(find rplidar_ros)/launch/rplidar_a1.launch" />
   
 </launch>

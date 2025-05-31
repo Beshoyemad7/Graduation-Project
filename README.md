@@ -52,7 +52,7 @@ The robot operates without human intervention, leveraging **LiDAR-based SLAM (Si
 
 ### 📸 Demo
 
-![Robot Figure](https://drive.google.com/drive/folders/17csFdlqmCzHJfE3e7hhVF4v1qE-0-sWg?usp=sharing)  
+🤖 [Robot Figure](https://drive.google.com/drive/folders/17csFdlqmCzHJfE3e7hhVF4v1qE-0-sWg?usp=sharing)  
 
 📽️ [Watch the demo video](https://drive.google.com/drive/folders/1Bcx0jAtpBURvWV9uA8XrtWkdPH-Lpo9Z?usp=sharing) 
 
